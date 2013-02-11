@@ -1,0 +1,8 @@
+<solr persistent="true" sharedLib="lib">
+  <cores adminPath="/admin/cores" shareSchema="false" defaultCoreName="biblio" hostPort="8080">
+    <core name="biblio" instanceDir="biblio"/>
+     <core name="authority" instanceDir="authority"/>
+    <core name="stats" instanceDir="stats"/>
+	<!--     <core name="holdings" instanceDir="holdings"/> -->
+  </cores>
+</solr>
