@@ -1,0 +1,67 @@
+import org.marc4j.marc.Record;
+import org.solrmarc.tools.Utils;
+import org.marc4j.marc.DataField;
+import org.apache.log4j.Logger;
+// define the base level indexer so that its methods can be called from the script.
+// note that the SolrIndexer code will set this value before the script methods are called.
+org.solrmarc.index.SolrIndexer indexer = null;
+
+protected static Logger logger = Logger.getLogger(Utils.class.getName());
+/**
+ * Check Subfilelds for the matching of a specific Value and return another subfield (or the same)
+ * @param record
+ * @param marcfield String dreistelliges MARC-Feld
+ * @param searchsubfield String einstelliges Subfeld von marcfield, dass geprueft werden soll
+ * @param valuesubfield String der in searchsubfiels geprueft werden soll
+ * @param returnsubfield String einstellig des Subfeldes, welches zurueckgegeben werden soll
+ * @return contentSubfield String Inhalt des returnsubfield
+ */
+public String getSubfieldIfSubfield(Record record,String marcfield,String searchsubfield,String valuesubfield,String returnsubfield) {
+	// Liste der Marcfelder
+	List fields = record.getVariableFields(marcfield);
+	// Iterator ueber Liste der Marcfelder
+	Iterator fieldsIter = fields.iterator();
+    if (fields != null) {
+		// intitiieren eines Datenfeldes
+        DataField currentfield;
+        while(fieldsIter.hasNext()) {
+            // das aktuelle Feld
+			currentfield = (DataField) fieldsIter.next();
+            
+			// initiieren des Values
+			String val;
+			
+			// Liste eines bestimmten Subfields (searchsubfield) des aktuellen Feldes
+            List subfields = currentfield.getSubfields(searchsubfield.charAt(0));
+            // Iterator über die searchsubfields
+			Iterator subfieldsIter = subfields.iterator();
+            if (subfields != null) {
+                while (subfieldsIter.hasNext()) {
+					// Value des Subfileds (searchsubfield)
+                    val = subfieldsIter.next().getData();
+					logger.info("val: " + val + " ; valuesubfield: " + valuesubfield);
+					// wenn Inhalt von einem searchsubfield ist gleich dem valuesubfiled, dann return Inhalt von returnsubfiled
+					if(val.equals(valuesubfield))
+					{
+						logger.info("val equals valuesubfield");
+						String contentSubfield = Utils.getSubfieldData(currentfield,returnsubfield.charAt(0));
+						logger.info("contentSubfield: " + contentSubfield);
+						return contentSubfield;
+					}
+					else
+					{
+					 logger.info("val not equals valuesubfield");
+					}
+                }
+            }
+			else {
+				logger.info("subfields is null");
+			}
+        }
+    } 
+	else {
+		logger.info("fields is null");
+	}
+    //otherwise return null
+    return null;
+}
