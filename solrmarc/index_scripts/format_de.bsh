@@ -1,0 +1,42 @@
+import org.marc4j.marc.Record;
+import org.marc4j.marc.ControlField;
+import org.marc4j.marc.DataField;
+
+org.solrmarc.index.SolrIndexer indexer = null;
+/**
+ * Determine Record Format(s)
+ *
+ * @param  Record          record
+ * @return Set     format of record
+ */
+public Set getFormat_de(Record record){
+	Set result = new LinkedHashSet();
+    //String result = "";
+    ControlField fixedField = (ControlField) record.getVariableField("008");
+    char formatCode = ' ';
+
+
+            // Look in 008 to determine what type of Continuing Resource
+            formatCode = fixedField.getData().toUpperCase().charAt(21);
+            switch (formatCode) {
+                case 'N':
+                    result.add("Zeitung");
+                    break;
+                case 'P':
+                	result.add("Zeitschrift");
+                	break;
+                case 'M':
+                    result.add("Serie");
+                    break;
+                default:
+                    result.add("Zeitschrift");
+                    break;
+            }
+
+    // Nothing worked!
+    if (result.isEmpty()) {
+        result.add("Zeitschrift");
+    }
+    
+    return result;
+}

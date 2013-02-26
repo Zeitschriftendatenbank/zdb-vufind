@@ -1,0 +1,42 @@
+import org.marc4j.marc.Record;
+import org.marc4j.marc.ControlField;
+import org.marc4j.marc.DataField;
+import org.solrmarc.tools.Utils;
+
+org.solrmarc.index.SolrIndexer indexer = null;
+
+/**
+* returns the URLs for the full text of a resource described by the record
+*
+* @param record
+* @return Set of Strings containing full text urls, or empty set if none
+*/
+    public String getBestandNorm(Record record, sf)
+    {
+        //Set<String> resultSet = new LinkedHashSet<String>();
+        String result = "";
+        List<VariableField> list859 = record.getVariableFields("859");
+        for (VariableField vf : list859)
+        {
+            DataField df = (DataField) vf;
+            List<String> possBestandsangaben = Utils.getSubfieldStrings(df, sf);
+            if (possBestandsangaben.size() > 0)
+            {
+                char ind2 = df.getIndicator2();
+                switch (ind2)
+                {
+                    case '0':
+                        resultSet.addAll(possUrls);
+                        break;
+                    case '2':
+                        break;
+                    default:
+                        if (!isSupplementalUrl(df))
+                            resultSet.addAll(possUrls);
+                        break;
+                }
+            }
+        }
+
+        return result;
+    }

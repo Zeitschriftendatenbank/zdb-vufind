@@ -1,0 +1,93 @@
+import org.marc4j.marc.Record;
+import org.marc4j.marc.ControlField;
+import org.marc4j.marc.DataField;
+
+org.solrmarc.index.SolrIndexer indexer = null;
+/**
+ * Determine Record Format(s)
+ *
+ * @param  Record          record
+ * @return Set     format of record
+ */
+public Set getType_de(Record record){
+	Set result = new LinkedHashSet();
+    //Sting result = "";
+
+//    DataField title = (DataField) record.getVariableField("245");
+    String formatString;
+    char formatCode = ' ';
+    char formatCode2 = ' ';
+
+    // check if there's an h in the 245
+/*    if (title != null) {
+        if (title.getSubfield('h') != null){
+            if (title.getSubfield('h').getData().toLowerCase().contains("[Elektronische Ressource]")) {
+                result.add("Electronic");
+                return result;
+            }
+        }
+    }
+*/
+    // check the 007 - this is a repeating field
+    List fields = record.getVariableFields("007");
+    Iterator fieldsIter = fields.iterator();
+    if (fields != null) {
+        ControlField formatField;
+        while(fieldsIter.hasNext()) {
+            formatField = (ControlField) fieldsIter.next();
+            formatString = formatField.getData().toUpperCase();
+            formatCode = formatString.length() > 0 ? formatString.charAt(0) : ' ';
+            formatCode2 = formatString.length() > 1 ? formatString.charAt(1) : ' ';
+            switch (formatCode) {
+                case 'A':
+                    result.add("Karte");
+                    break;
+                case 'C':
+                    switch(formatCode2) {
+                        case 'M':
+                        case 'O':
+                            result.add("CD/DVD");
+                            break;
+                        case 'R':
+                        	result.add("Online-Ressource");
+                            break;
+                        default:
+                            result.add("Datenträger");
+                            break;
+                    }
+                    break;
+                case 'F':
+                    result.add("Blindenschriftträger");
+                    break;
+                case 'H':
+                    result.add("Microform");
+                    break;
+                case 'O':
+                    result.add("Medienkombination");
+                    break;
+                case 'Q':
+                    result.add("Noten");
+                    break;
+                case 'S':
+                	result.add("Tonträger");
+                    break;
+                case 'V':
+                	result.add("Videoaufnahme");
+                    break;
+                 default:
+                     result.add("Verschiedenes");
+                     break;                	 
+            }
+        }
+        if (!result.isEmpty()) {
+            return result;
+        }
+    }
+
+    // Nothing worked!
+    if (result.isEmpty()) {
+        result.add("Unbekannt");
+    }
+    
+    return result;
+}

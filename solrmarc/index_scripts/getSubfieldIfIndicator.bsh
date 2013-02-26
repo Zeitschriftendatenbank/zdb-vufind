@@ -1,0 +1,60 @@
+import org.marc4j.marc.Record;
+import org.marc4j.marc.ControlField;
+import org.marc4j.marc.DataField;
+import org.solrmarc.tools.Utils;
+
+org.solrmarc.index.SolrIndexer indexer = null;
+
+/**
+ * based on the indicator 1 return a specific list of subfield
+ *
+ * @param record
+ * @param field
+ * @param indicator
+ * @return Set of Strings
+ */
+public Set getSubfInd1(Record record, String field, String indicator, String returnsubfield)
+{
+	Set result = new LinkedHashSet();
+	List list = record.getVariableFields(field);
+	for (DataField vf : list)
+	{
+		DataField df = (DataField) vf;
+		char ind1 = df.getIndicator1();
+		if(ind1.equals(indicator))
+		{
+			String subfieldContent = Utils.getSubfieldData(df,returnsubfield.charAt(0));
+			if(subfield.size() > 0) result.add(subfieldContent);
+			
+		}
+	}
+	
+	return result;
+}
+
+/**
+* based on the indicator 2 return a specific list of subfield
+*
+* @param record
+* @param field
+* @param indicator
+* @return Set of Strings
+*/
+    public Set getSubfInd2(Record record, String field, String indicator, String returnsubfield)
+    {
+    	Set result = new LinkedHashSet();
+        List list = record.getVariableFields(field);
+        for (DataField vf : list)
+        {
+            DataField df = (DataField) vf;
+            char ind2 = df.getIndicator2();
+            if(ind2.equals(indicator))
+            {
+            	String subfieldContent = Utils.getSubfieldData(df,returnsubfield.charAt(0));
+            	if(subfield.size() > 0) result.add(subfieldContent);
+            
+            }
+        }
+
+        return result;
+    }
