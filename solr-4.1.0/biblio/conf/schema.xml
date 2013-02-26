@@ -23,7 +23,7 @@
 				<filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" enablePositionIncrements="true"/>
 				<filter class="solr.ICUFoldingFilterFactory"/>
 				<filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
-				<filter class="solr.SnowballPorterFilterFactory" language="English"/>
+				<filter class="solr.SnowballPorterFilterFactory" language="German"/>
 				<filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
 			</analyzer>
 			<analyzer type="query">
@@ -33,7 +33,7 @@
 				<filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" enablePositionIncrements="true"/>
 				<filter class="solr.ICUFoldingFilterFactory"/>
 				<filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
-				<filter class="solr.SnowballPorterFilterFactory" language="English"/>
+				<filter class="solr.SnowballPorterFilterFactory" language="German"/>
 				<filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
 			</analyzer>
 		</fieldType>
@@ -97,9 +97,28 @@
 	<fields>
 		<!-- Core Fields  -->
 		<field name="id" type="string" indexed="true" stored="true"/>
-		<field name="zdbid" type="string" indexed="true" stored="true"/>
-		<!-- ebene 0 = bibliographische Ebene; 1 = lokale Ebene -->
+		<field name="_version_" type="long" indexed="true" stored="true"/>
+		<!-- ebene titel = bibliographische Ebene; lokal = lokale Ebene -->
 		<field name="ebene" type="string" indexed="true" stored="false"/>
+		<!-- Used for loading correct record driver -->
+		<field name="recordtype" type="string" indexed="false" stored="true"/>
+		<!-- Numbers & Identifiers -->
+		<field name="zdbid" type="string" indexed="true" stored="true"/>
+		<field name="lccn" type="string" indexed="true" stored="true"/>
+		<field name="ctrlnum" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="isbn" type="isn" indexed="true" stored="true" multiValued="true"/>
+		<field name="issn" type="isn" indexed="true" stored="true" multiValued="true"/>
+		<field name="oclc_num" type="string" indexed="true" stored="true" multiValued="true" />
+		<field name="ssg_num" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="ssg" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="dewey-hundreds" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="dewey-tens" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="dewey-ones" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="dewey-full" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="dewey-sort" type="string" indexed="true" stored="true" />
+		<field name="dewey-raw" type="string" indexed="true" stored="true" />
+		<field name="standardNumbers" type="string" indexed="true" stored="true" multiValued="true"/>
+		<!-- other -->
 		<field name="fullrecord" type="string" indexed="false" stored="true"/>
 		<field name="marc_error" type="string" indexed="false" stored="true" multiValued="true"/>
 		<field name="allfields" type="text" indexed="true" stored="false"/>
@@ -108,65 +127,30 @@
 		<field name="fulltext_unstemmed" type="textProper" indexed="true" stored="false"/>
 		<field name="spelling" type="textSpell" indexed="true" stored="true"/>
 		<field name="spellingShingle" type="textSpellShingle" indexed="true" stored="true" multiValued="true"/>
-		<!-- Institutional Fields -->
-		<field name="institution" type="string" indexed="true" stored="true" multiValued="true"/>
-		<field name="collection" type="string" indexed="true" stored="true" multiValued="true"/>
-		<field name="building" type="string" indexed="true" stored="true" multiValued="true"/>
-		<!-- Generic Fields -->
-		<field name="language" type="string" indexed="true" stored="true" multiValued="true"/>
-		<field name="format" type="string" indexed="true" stored="true" multiValued="true"/>
-		<field name="author" type="textProper" indexed="true" stored="true" termVectors="true"/>
-		<field name="author-letter" type="string" indexed="true" stored="true"/>
-		<field name="authorStr" type="textFacet" indexed="true" stored="false"/>
-		<field name="title" type="text" indexed="true" stored="true"/>
-		<field name="title_sort" type="string" indexed="true" stored="true"/>
-		<field name="title_sub" type="text" indexed="true" stored="true"/>
-		<field name="title_short" type="text" indexed="true" stored="true"/>
-		<field name="title_full" type="text" indexed="true" stored="true"/>
-		<field name="title_full_unstemmed" type="textProper" indexed="true" stored="true"/>
-		<field name="title_fullStr" type="string" indexed="true" stored="true"/>
-		<field name="title_auth" type="text" indexed="true" stored="true"/>
 		<field name="physical" type="string" indexed="true" stored="true" multiValued="true"/>
 		<field name="publisher" type="textProper" indexed="true" stored="true" multiValued="true"/>
 		<field name="publisherStr" type="string" indexed="true" stored="false" multiValued="true"/>
 		<field name="publishDate" type="string" indexed="true" stored="true" multiValued="true"/>
 		<field name="publishDateSort" type="string" indexed="true" stored="false"/>
+		<field name="publishPlace" type="textProper" indexed="true" stored="true" multiValued="true"/>
+		<field name="publishPlaceStr" type="string" indexed="true" stored="false" multiValued="true"/>
 		<field name="edition" type="string" indexed="true" stored="true"/>
 		<field name="description" type="text" indexed="true" stored="true"/>
 		<field name="contents" type="text" indexed="true" stored="true" multiValued="true"/>
 		<field name="url" type="string" indexed="false" stored="true" multiValued="true"/>
 		<field name="thumbnail" type="string" indexed="false" stored="true"/>
-		<!-- Catalog Specific Fields -->
-		<field name="lccn" type="string" indexed="true" stored="true"/>
-		<field name="ctrlnum" type="string" indexed="true" stored="true" multiValued="true"/>
-		<field name="isbn" type="isn" indexed="true" stored="true" multiValued="true"/>
-		<field name="issn" type="isn" indexed="true" stored="true" multiValued="true"/>
-		<field name="oclc_num" type="string" indexed="true" stored="true" multiValued="true" />
-		<field name="callnumber" type="string" indexed="true" stored="true"/>
-		<field name="callnumber-a" type="string" indexed="true" stored="true"/>
-		<field name="callnumber-first" type="string" indexed="true" stored="true"/>
-		<field name="callnumber-first-code" type="string" indexed="true" stored="true"/>
-		<field name="callnumber-subject" type="string" indexed="true" stored="true"/>
-		<field name="callnumber-subject-code" type="string" indexed="true" stored="true"/>
-		<field name="callnumber-label" type="string" indexed="true" stored="true"/>
-		<field name="dewey-hundreds" type="string" indexed="true" stored="true" multiValued="true"/>
-		<field name="dewey-tens" type="string" indexed="true" stored="true" multiValued="true"/>
-		<field name="dewey-ones" type="string" indexed="true" stored="true" multiValued="true"/>
-		<field name="dewey-full" type="string" indexed="true" stored="true" multiValued="true"/>
-		<field name="dewey-sort" type="string" indexed="true" stored="true" />
-		<field name="dewey-raw" type="string" indexed="true" stored="true" />
-		<field name="author2" type="textProper" indexed="true" stored="true" multiValued="true"/>
-		<field name="author2Str" type="string" indexed="true" stored="true" multiValued="true"/>
-		<field name="author2-role" type="string" indexed="true" stored="true" multiValued="true"/>
-		<field name="author_fuller" type="textProper" indexed="true" stored="true" />
-		<field name="author_additional" type="textProper" indexed="true" stored="true" multiValued="true"/>
-		<field name="author_additionalStr" type="string" indexed="true" stored="true" multiValued="true"/>
-		<field name="title_alt" type="text" indexed="true" stored="true" multiValued="true"/>
-		<field name="title_old" type="text" indexed="true" stored="true" multiValued="true"/>
-		<field name="title_new" type="text" indexed="true" stored="true" multiValued="true"/>
+		<field name="illustrated" type="string" indexed="true" stored="true" multiValued="false"/>
+		<field name="coden" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="long_lat" type="textFacet" indexed="true" stored="true" multiValued="false"/>
+		<!-- Tracking fields to keep track of oldest and most recent index times -->
+		<field name="first_indexed" type="date" indexed="true" stored="true"/>
+		<field name="last_indexed" type="date" indexed="true" stored="true"/>
+		<!-- Facets -->
+		<field name="language" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="country" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="format" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="type" type="string" indexed="true" stored="true" multiValued="true"/>
 		<field name="dateSpan" type="string" indexed="true" stored="true" multiValued="true"/>
-		<field name="series" type="text" indexed="true" stored="true" multiValued="true"/>
-		<field name="series2" type="text" indexed="true" stored="true" multiValued="true"/>
 		<field name="topic" type="text" indexed="true" stored="true" multiValued="true"/>
 		<field name="topic_unstemmed" type="textProper" indexed="true" stored="false" multiValued="true"/>
 		<field name="topic_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
@@ -178,14 +162,59 @@
 		<field name="geographic_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
 		<field name="era" type="text" indexed="true" stored="true" multiValued="true"/>
 		<field name="era_facet" type="textFacet" indexed="true" stored="true" multiValued="true"/>
-		<field name="illustrated" type="string" indexed="true" stored="true" multiValued="false"/>
-		<field name="long_lat" type="textFacet" indexed="true" stored="true" multiValued="false"/>
-		<!-- Container fields (i.e. for describing journal containing an article) -->
+		<!-- Author -->
+		<field name="author" type="textProper" indexed="true" stored="true" termVectors="true"/>
+		<field name="author-letter" type="string" indexed="true" stored="true"/>
+		<field name="authorStr" type="textFacet" indexed="true" stored="false"/>
+		<field name="author2" type="textProper" indexed="true" stored="true" multiValued="true"/>
+		<field name="author2Str" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="author2-role" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="author_fuller" type="textProper" indexed="true" stored="true" />
+		<field name="author_additional" type="textProper" indexed="true" stored="true" multiValued="true"/>
+		<field name="author_additionalStr" type="string" indexed="true" stored="true" multiValued="true"/>
+		<!-- Title -->
+		<field name="title" type="text" indexed="true" stored="true"/>
+		<field name="title_sort" type="string" indexed="true" stored="true"/>
+		<field name="title_sub" type="text" indexed="true" stored="true"/>
+		<field name="title_short" type="text" indexed="true" stored="true"/>
+		<field name="title_full" type="text" indexed="true" stored="true"/>
+		<field name="title_full_unstemmed" type="textProper" indexed="true" stored="true"/>
+		<field name="title_fullStr" type="string" indexed="true" stored="true"/>
+		<field name="title_auth" type="text" indexed="true" stored="true"/>
+		<!-- Hirarchie -->
+		<field name="title_alt" type="text" indexed="true" stored="true" multiValued="true"/>
+		<field name="title_old" type="text" indexed="true" stored="true" multiValued="true"/>
+		<field name="title_new" type="text" indexed="true" stored="true" multiValued="true"/>
+		<field name="series" type="text" indexed="true" stored="true" multiValued="true"/>
+		<field name="series2" type="text" indexed="true" stored="true" multiValued="true"/>
 		<field name="container_title" type="text" indexed="true" stored="true"/>
 		<field name="container_volume" type="text" indexed="true" stored="true"/>
 		<field name="container_issue" type="text" indexed="true" stored="true"/>
 		<field name="container_start_page" type="text" indexed="true" stored="true"/>
 		<field name="container_reference" type="text" indexed="true" stored="true"/>
+		<!-- Fields describing a holding record (field ebene = lokal) -->
+		<field name="tid" type="string" indexed="true" stored="true"/>
+		<field name="tzdbid" type="string" indexed="true" stored="true"/>
+		<field name="isil" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="callnumber" type="textProper" indexed="true" stored="true" multiValued="true"/>
+		<field name="callnumber-a" type="string" indexed="true" stored="true"/>
+		<field name="callnumber-first" type="string" indexed="true" stored="true"/>
+		<field name="callnumber-first-code" type="string" indexed="true" stored="true"/>
+		<field name="callnumber-subject" type="string" indexed="true" stored="true"/>
+		<field name="callnumber-subject-code" type="string" indexed="true" stored="true"/>
+		<field name="callnumber-label" type="string" indexed="true" stored="true"/>
+		<field name="bestand" type="textProper" indexed="true" stored="true" multiValued="true"/>
+		<field name="bestand_text" type="text" indexed="true" stored="true" multiValued="true"/>
+		<field name="bestand_luecken" type="textProper" indexed="true" stored="true" multiValued="true"/>
+		<dynamicField name="*_bestand_beg" type="string" indexed="true" stored="true" multiValued="true"/>
+		<dynamicField name="*_bestand_end" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="sonderstandort" type="textProper" indexed="true" stored="true" multiValued="true"/>
+		<field name="sonderstandort_signatur" type="textProper" indexed="true" stored="true" multiValued="true"/>
+		<field name="bestand_kommentar" type="text" indexed="true" stored="true" multiValued="true"/>
+		<!-- Institutional Fields -->
+		<field name="institution" type="textProper" indexed="true" stored="true" multiValued="true"/>
+		<field name="collection" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="building" type="textProper" indexed="true" stored="true" multiValued="true"/>
 		<!-- Hierarchy Fields -->
 		<field name="hierarchytype" type="string" index="true" stored="true" multiValued="false"/>
 		<field name="hierarchy_top_id" type="string" index="true" stored="true" multiValued="true"/>
@@ -196,12 +225,8 @@
 		<field name="is_hierarchy_id" type="string" indexed="true" stored="true" multiValued="false"/>
 		<field name="is_hierarchy_title" type="string" indexed="true" stored="true" multiValued="false"/>
 		<field name="hierarchy_browse" type="textFacetRaw" indexed="true" stored="false" multiValued="true"/>
-		<!-- Used for loading correct record driver -->
-		<field name="recordtype" type="string" indexed="false" stored="true"/>
-		<!-- Tracking fields to keep track of oldest and most recent index times -->
-		<field name="first_indexed" type="date" indexed="true" stored="true"/>
-		<field name="last_indexed" type="date" indexed="true" stored="true"/>
 		<!-- Dynamic fields for customization without schema modification -->
+		<dynamicField name="*_gnd_id" type="string" indexed="true" stored="true" multiValued="true"/>
 		<dynamicField name="*_date" type="date" indexed="true" stored="true"/>
 		<dynamicField name="*_date_mv" type="date" indexed="true" stored="true" multiValued="true"/>
 		<dynamicField name="*_isn" type="isn" indexed="true" stored="true"/>
@@ -222,6 +247,7 @@
 	<copyField source="allfields" dest="spelling"/>
 	<!-- ** Complex, Shingle spelling -->
 	<copyField source="author"   dest="spellingShingle"/>
+	<copyField source="author2"   dest="spellingShingle"/>
 	<copyField source="title"    dest="spellingShingle"/>
 	<copyField source="contents" dest="spellingShingle"/>
 	<copyField source="series"   dest="spellingShingle"/>
@@ -233,6 +259,7 @@
 	<copyField source="author2" dest="author2Str"/>
 	<copyField source="author_additional" dest="author_additionalStr"/>
 	<copyField source="publisher" dest="publisherStr"/>
+	<copyField source="publishPlace" dest="publishPlaceStr"/>
 	<copyField source="topic" dest="topic_unstemmed"/>
 	<copyField source="allfields" dest="allfields_unstemmed"/>
 	<copyField source="fulltext" dest="fulltext_unstemmed"/>
