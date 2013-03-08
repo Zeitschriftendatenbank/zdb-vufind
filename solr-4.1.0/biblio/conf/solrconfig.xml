@@ -403,6 +403,8 @@
     <!-- default values for query parameters -->
      <lst name="defaults">
        <str name="echoParams">explicit</str>
+       <!--  ZDB Edit for temporalCoverageField -->
+       <int name="maxtempcoveragefields">10</int>
        <!-- 
        <int name="rows">10</int>
        <str name="fl">*</str>
@@ -874,4 +876,5 @@
     -->
   </admin>
 
+  <!-- <queryParser name="mediahubqparser" class="uk.ac.edina.solr.search.MediaHubQParserPlugin" /> -->
 </config>
