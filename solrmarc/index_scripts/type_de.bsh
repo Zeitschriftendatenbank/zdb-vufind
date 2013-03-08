@@ -75,7 +75,7 @@ public Set getType_de(Record record){
                 	result.add("Videoaufnahme");
                     break;
                  default:
-                     result.add("Verschiedenes");
+                     result.add("Print");
                      break;                	 
             }
         }
