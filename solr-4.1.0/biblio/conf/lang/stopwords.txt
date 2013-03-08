@@ -1,0 +1,1043 @@
+an
+and
+are
+as
+at
+be
+but
+by
+for
+if
+in
+into
+is
+it
+no
+not
+of
+on
+or
+s
+such
+t
+that
+the
+their
+then
+there
+these
+they
+this
+to
+was
+will
+with
+einer
+eine
+eines
+einem
+einen
+der
+die
+das
+dass
+du
+er
+sie
+es
+was
+wer
+wie
+wir
+und
+oder
+ohne
+mit
+am
+im
+in
+aus
+auf
+ist
+sein
+war
+wird
+ihr
+ihre
+ihres
+als
+für
+von
+mit
+dich
+dir
+mich
+mir
+mein
+sein
+kein
+durch
+wegen
+wird
+a
+afin
+ai
+ainsi
+apres
+attendu
+au
+aujourd
+auquel
+aussi
+autre
+autres
+aux
+auxquelles
+auxquels
+avait
+avant
+avec
+avoir
+c
+car
+ce
+ceci
+cela
+celle
+celles
+celui
+cependant
+certain
+certaine
+certaines
+certains
+ces
+cet
+cette
+ceux
+chez
+ci
+combien
+comme
+comment
+concernant
+contre
+d
+dans
+de
+debout
+dedans
+dehors
+del`
+depuis
+derriere
+des
+desormais
+desquelles
+desquels
+dessous
+dessus
+devant
+devers
+devra
+divers
+diverse
+diverses
+doit
+donc
+dont
+du
+duquel
+durant
+des
+elle
+elles
+en
+entre
+environ
+est
+et
+etc
+etre,eu
+eux
+excepte
+hormis
+hors
+helas
+hui
+il
+ils
+j
+je
+jusqu
+jusque
+l
+la
+laquelle
+le
+lequel
+les
+lesquelles
+lesquels
+leur
+leurs
+lorsque
+lui
+l`
+ma
+mais
+malgre
+me
+merci,mes
+mien
+mienne
+miennes
+miens
+moi
+moins
+mon
+moyennant
+meme
+memes
+n
+ne
+ni
+non
+nos
+notre
+nous
+neanmoins
+notre
+notres
+on
+ont
+ou
+outre
+ou
+par
+parmi
+partant
+pas
+passe
+pendant
+plein
+plus
+plusieurs
+pour
+pourquoi,proche
+pres
+puisque
+qu
+quand
+que
+quel
+quelle
+quelles
+quels
+qui
+quoi
+quoique
+revoici
+revoil`
+s
+sa
+sans
+sauf
+se
+selon
+seront
+ses
+si
+sien
+sienne
+siennes
+siens
+sinon
+soi
+soit
+son
+sont
+sous
+suivant
+sur
+ta
+te
+tes
+tien
+tienne
+tiennes
+tiens
+toi
+ton
+tous
+tout
+toute
+toutes
+tu
+un
+une
+va
+vers
+voici
+voil`
+vos
+votre
+vous
+vu
+votre
+votres
+y
+ca
+es
+ete
+etre
+o
+
+ad             |  a (to) before vowel
+al             |  a + il
+allo           |  a + lo
+ai             |  a + i
+agli           |  a + gli
+all            |  a + l'
+agl            |  a + gl'
+alla           |  a + la
+alle           |  a + le
+con            |  with
+col            |  con + il
+coi            |  con + i (forms collo, cogli etc are now very rare)
+da             |  from
+dal            |  da + il
+dallo          |  da + lo
+dai            |  da + i
+dagli          |  da + gli
+dall           |  da + l'
+dagl           |  da + gll'
+dalla          |  da + la
+dalle          |  da + le
+di             |  of
+del            |  di + il
+dello          |  di + lo
+dei            |  di + i
+degli          |  di + gli
+dell           |  di + l'
+degl           |  di + gl'
+della          |  di + la
+delle          |  di + le
+in             |  in
+nel            |  in + el
+nello          |  in + lo
+nei            |  in + i
+negli          |  in + gli
+nell           |  in + l'
+negl           |  in + gl'
+nella          |  in + la
+nelle          |  in + le
+su             |  on
+sul            |  su + il
+sullo          |  su + lo
+sui            |  su + i
+sugli          |  su + gli
+sull           |  su + l'
+sugl           |  su + gl'
+sulla          |  su + la
+sulle          |  su + le
+per            |  through, by
+tra            |  among
+contro         |  against
+io             |  I
+tu             |  thou
+lui            |  he
+lei            |  she
+noi            |  we
+voi            |  you
+loro           |  they
+mio            |  my
+mia            |
+miei           |
+mie            |
+tuo            |
+tua            |
+tuoi           |  thy
+tue            |
+suo            |
+sua            |
+suoi           |  his, her
+sue            |
+nostro         |  our
+nostra         |
+nostri         |
+nostre         |
+vostro         |  your
+vostra         |
+vostri         |
+vostre         |
+mi             |  me
+ti             |  thee
+ci             |  us, there
+vi             |  you, there
+lo             |  him, the
+la             |  her, the
+li             |  them
+le             |  them, the
+gli            |  to him, the
+ne             |  from there etc
+il             |  the
+un             |  a
+uno            |  a
+una            |  a
+ma             |  but
+ed             |  and
+se             |  if
+perché         |  why, because
+anche          |  also
+come           |  how
+dov            |  where (as dov')
+dove           |  where
+che            |  who, that
+chi            |  who
+cui            |  whom
+non            |  not
+più            |  more
+quale          |  who, that
+quanto         |  how much
+quanti         |
+quanta         |
+quante         |
+quello         |  that
+quelli         |
+quella         |
+quelle         |
+questo         |  this
+questi         |
+questa         |
+queste         |
+si             |  yes
+tutto          |  all
+tutti          |  all
+
+               |  single letter forms:
+
+a              |  at
+c              |  as c' for ce or ci
+e              |  and
+i              |  the
+l              |  as l'
+o              |  or
+
+               | forms of avere, to have (not including the infinitive):
+
+ho
+hai
+ha
+abbiamo
+avete
+hanno
+abbia
+abbiate
+abbiano
+avrò
+avrai
+avrà
+avremo
+avrete
+avranno
+avrei
+avresti
+avrebbe
+avremmo
+avreste
+avrebbero
+avevo
+avevi
+aveva
+avevamo
+avevate
+avevano
+ebbi
+avesti
+ebbe
+avemmo
+aveste
+ebbero
+avessi
+avesse
+avessimo
+avessero
+avendo
+avuto
+avuta
+avuti
+avute
+
+               | forms of essere, to be (not including the infinitive):
+sono
+sei
+è
+siamo
+siete
+sia
+siate
+siano
+sarò
+sarai
+sarà
+saremo
+sarete
+saranno
+sarei
+saresti
+sarebbe
+saremmo
+sareste
+sarebbero
+ero
+eri
+era
+eravamo
+eravate
+erano
+fui
+fosti
+fu
+fummo
+foste
+furono
+fossi
+fosse
+fossimo
+fossero
+essendo
+
+               | forms of fare, to do (not including the infinitive, fa, fat-):
+faccio
+fai
+facciamo
+fanno
+faccia
+facciate
+facciano
+farò
+farai
+farà
+faremo
+farete
+faranno
+farei
+faresti
+farebbe
+faremmo
+fareste
+farebbero
+facevo
+facevi
+faceva
+facevamo
+facevate
+facevano
+feci
+facesti
+fece
+facemmo
+faceste
+fecero
+facessi
+facesse
+facessimo
+facessero
+facendo
+
+               | forms of stare, to be (not including the infinitive):
+sto
+stai
+sta
+stiamo
+stanno
+stia
+stiate
+stiano
+starò
+starai
+starà
+staremo
+starete
+staranno
+starei
+staresti
+starebbe
+staremmo
+stareste
+starebbero
+stavo
+stavi
+stava
+stavamo
+stavate
+stavano
+stetti
+stesti
+stette
+stemmo
+steste
+stettero
+stessi
+stesse
+stessimo
+stessero
+stando
+
+
+de             |  from, of
+la             |  the, her
+que            |  who, that
+el             |  the
+en             |  in
+y              |  and
+a              |  to
+los            |  the, them
+del            |  de + el
+se             |  himself, from him etc
+las            |  the, them
+por            |  for, by, etc
+un             |  a
+para           |  for
+con            |  with
+no             |  no
+una            |  a
+su             |  his, her
+al             |  a + el
+  | es         from SER
+lo             |  him
+como           |  how
+más            |  more
+pero           |  pero
+sus            |  su plural
+le             |  to him, her
+ya             |  already
+o              |  or
+  | fue        from SER
+este           |  this
+  | ha         from HABER
+sí             |  himself etc
+porque         |  because
+esta           |  this
+  | son        from SER
+entre          |  between
+  | está     from ESTAR
+cuando         |  when
+muy            |  very
+sin            |  without
+sobre          |  on
+  | ser        from SER
+  | tiene      from TENER
+también        |  also
+me             |  me
+hasta          |  until
+hay            |  there is/are
+donde          |  where
+  | han        from HABER
+quien          |  whom, that
+  | están      from ESTAR
+  | estado     from ESTAR
+desde          |  from
+todo           |  all
+nos            |  us
+durante        |  during
+  | estados    from ESTAR
+todos          |  all
+uno            |  a
+les            |  to them
+ni             |  nor
+contra         |  against
+otros          |  other
+  | fueron     from SER
+ese            |  that
+eso            |  that
+  | había      from HABER
+ante           |  before
+ellos          |  they
+e              |  and (variant of y)
+esto           |  this
+mí             |  me
+antes          |  before
+algunos        |  some
+qué            |  what?
+unos           |  a
+yo             |  I
+otro           |  other
+otras          |  other
+otra           |  other
+él             |  he
+tanto          |  so much, many
+esa            |  that
+estos          |  these
+mucho          |  much, many
+quienes        |  who
+nada           |  nothing
+muchos         |  many
+cual           |  who
+  | sea        from SER
+poco           |  few
+ella           |  she
+estar          |  to be
+  | haber      from HABER
+estas          |  these
+  | estaba     from ESTAR
+  | estamos    from ESTAR
+algunas        |  some
+algo           |  something
+nosotros       |  we
+
+      | other forms
+
+mi             |  me
+mis            |  mi plural
+tú             |  thou
+te             |  thee
+ti             |  thee
+tu             |  thy
+tus            |  tu plural
+ellas          |  they
+nosotras       |  we
+vosotros       |  you
+vosotras       |  you
+os             |  you
+mío            |  mine
+mía            |
+míos           |
+mías           |
+tuyo           |  thine
+tuya           |
+tuyos          |
+tuyas          |
+suyo           |  his, hers, theirs
+suya           |
+suyos          |
+suyas          |
+nuestro        |  ours
+nuestra        |
+nuestros       |
+nuestras       |
+vuestro        |  yours
+vuestra        |
+vuestros       |
+vuestras       |
+esos           |  those
+esas           |  those
+
+               | forms of estar, to be (not including the infinitive):
+estoy
+estás
+está
+estamos
+estáis
+están
+esté
+estés
+estemos
+estéis
+estén
+estaré
+estarás
+estará
+estaremos
+estaréis
+estarán
+estaría
+estarías
+estaríamos
+estaríais
+estarían
+estaba
+estabas
+estábamos
+estabais
+estaban
+estuve
+estuviste
+estuvo
+estuvimos
+estuvisteis
+estuvieron
+estuviera
+estuvieras
+estuviéramos
+estuvierais
+estuvieran
+estuviese
+estuvieses
+estuviésemos
+estuvieseis
+estuviesen
+estando
+estado
+estada
+estados
+estadas
+estad
+
+               | forms of haber, to have (not including the infinitive):
+he
+has
+ha
+hemos
+habéis
+han
+haya
+hayas
+hayamos
+hayáis
+hayan
+habré
+habrás
+habrá
+habremos
+habréis
+habrán
+habría
+habrías
+habríamos
+habríais
+habrían
+había
+habías
+habíamos
+habíais
+habían
+hube
+hubiste
+hubo
+hubimos
+hubisteis
+hubieron
+hubiera
+hubieras
+hubiéramos
+hubierais
+hubieran
+hubiese
+hubieses
+hubiésemos
+hubieseis
+hubiesen
+habiendo
+habido
+habida
+habidos
+habidas
+
+               | forms of ser, to be (not including the infinitive):
+soy
+eres
+es
+somos
+sois
+son
+sea
+seas
+seamos
+seáis
+sean
+seré
+serás
+será
+seremos
+seréis
+serán
+sería
+serías
+seríamos
+seríais
+serían
+era
+eras
+éramos
+erais
+eran
+fui
+fuiste
+fue
+fuimos
+fuisteis
+fueron
+fuera
+fueras
+fuéramos
+fuerais
+fueran
+fuese
+fueses
+fuésemos
+fueseis
+fuesen
+siendo
+sido
+  |  sed also means 'thirst'
+
+               | forms of tener, to have (not including the infinitive):
+tengo
+tienes
+tiene
+tenemos
+tenéis
+tienen
+tenga
+tengas
+tengamos
+tengáis
+tengan
+tendré
+tendrás
+tendrá
+tendremos
+tendréis
+tendrán
+tendría
+tendrías
+tendríamos
+tendríais
+tendrían
+tenía
+tenías
+teníamos
+teníais
+tenían
+tuve
+tuviste
+tuvo
+tuvimos
+tuvisteis
+tuvieron
+tuviera
+tuvieras
+tuviéramos
+tuvierais
+tuvieran
+tuviese
+tuvieses
+tuviésemos
+tuvieseis
+tuviesen
+teniendo
+tenido
+tenida
+tenidos
+tenidas
+tened
+
+ | From svn.tartarus.org/snowball/trunk/website/algorithms/dutch/stop.txt
+ | This file is distributed under the BSD License.
+ | See http://snowball.tartarus.org/license.php
+ | Also see http://www.opensource.org/licenses/bsd-license.html
+ |  - Encoding was converted to UTF-8.
+ |  - This notice was added.
+
+ | A Dutch stop word list. Comments begin with vertical bar. Each stop
+ | word is at the start of a line.
+
+ | This is a ranked list (commonest to rarest) of stopwords derived from
+ | a large sample of Dutch text.
+
+ | Dutch stop words frequently exhibit homonym clashes. These are indicated
+ | clearly below.
+
+de             |  the
+en             |  and
+van            |  of, from
+ik             |  I, the ego
+te             |  (1) chez, at etc, (2) to, (3) too
+dat            |  that, which
+die            |  that, those, who, which
+in             |  in, inside
+een            |  a, an, one
+hij            |  he
+het            |  the, it
+niet           |  not, nothing, naught
+zijn           |  (1) to be, being, (2) his, one's, its
+is             |  is
+was            |  (1) was, past tense of all persons sing. of 'zijn' (to be) (2) wax, (3) the washing, (4) rise of river
+op             |  on, upon, at, in, up, used up
+aan            |  on, upon, to (as dative)
+met            |  with, by
+als            |  like, such as, when
+voor           |  (1) before, in front of, (2) furrow
+had            |  had, past tense all persons sing. of 'hebben' (have)
+er             |  there
+maar           |  but, only
+om             |  round, about, for etc
+hem            |  him
+dan            |  then
+zou            |  should/would, past tense all persons sing. of 'zullen'
+of             |  or, whether, if
+wat            |  what, something, anything
+mijn           |  possessive and noun 'mine'
+men            |  people, 'one'
+dit            |  this
+zo             |  so, thus, in this way
+door           |  through by
+over           |  over, across
+ze             |  she, her, they, them
+zich           |  oneself
+bij            |  (1) a bee, (2) by, near, at
+ook            |  also, too
+tot            |  till, until
+je             |  you
+mij            |  me
+uit            |  out of, from
+der            |  Old Dutch form of 'van der' still found in surnames
+daar           |  (1) there, (2) because
+haar           |  (1) her, their, them, (2) hair
+naar           |  (1) unpleasant, unwell etc, (2) towards, (3) as
+heb            |  present first person sing. of 'to have'
+hoe            |  how, why
+heeft          |  present third person sing. of 'to have'
+hebben         |  'to have' and various parts thereof
+deze           |  this
+u              |  you
+want           |  (1) for, (2) mitten, (3) rigging
+nog            |  yet, still
+zal            |  'shall', first and third person sing. of verb 'zullen' (will)
+me             |  me
+zij            |  she, they
+nu             |  now
+ge             |  'thou', still used in Belgium and south Netherlands
+geen           |  none
+omdat          |  because
+iets           |  something, somewhat
+worden         |  to become, grow, get
+toch           |  yet, still
+al             |  all, every, each
+waren          |  (1) 'were' (2) to wander, (3) wares, (3)
+veel           |  much, many
+meer           |  (1) more, (2) lake
+doen           |  to do, to make
+toen           |  then, when
+moet           |  noun 'spot/mote' and present form of 'to must'
+ben            |  (1) am, (2) 'are' in interrogative second person singular of 'to be'
+zonder         |  without
+kan            |  noun 'can' and present form of 'to be able'
+hun            |  their, them
+dus            |  so, consequently
+alles          |  all, everything, anything
+onder          |  under, beneath
+ja             |  yes, of course
+eens           |  once, one day
+hier           |  here
+wie            |  who
+werd           |  imperfect third person sing. of 'become'
+altijd         |  always
+doch           |  yet, but etc
+wordt          |  present third person sing. of 'become'
+wezen          |  (1) to be, (2) 'been' as in 'been fishing', (3) orphans
+kunnen         |  to be able
+ons            |  us/our
+zelf           |  self
+tegen          |  against, towards, at
+na             |  after, near
+reeds          |  already
+wil            |  (1) present tense of 'want', (2) 'will', noun, (3) fender
+kon            |  could; past tense of 'to be able'
+niets          |  nothing
+uw             |  your
+iemand         |  somebody
+geweest        |  been; past participle of 'be'
+andere         |  other
