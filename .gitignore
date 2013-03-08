@@ -1,1 +1,5 @@
-/usr/local/vufind/web/conf/*
+web/conf/*
+solrmarc/vufind_exemplar_config.properties
+solrmarc/vufind_titel_config.properties
+solr/*
+solr-4.1.0/example/*
