@@ -913,11 +913,9 @@ class Solr implements IndexEngine
             $options['sort'] = implode(',', $sortParts);
         }
 
-        $ss = is_null($handler) ? null : $this->_getSearchSpecs($handler);
-
         // Determine which handler to use
         if (!$this->isAdvanced($query)) {
-        	//ZDB: moved up $ss = is_null($handler) ? null : $this->_getSearchSpecs($handler);
+        	$ss = is_null($handler) ? null : $this->_getSearchSpecs($handler);
             // Is this a Dismax search?
             if (isset($ss['DismaxFields'])) {
                 // Specify the fields to do a Dismax search on:
