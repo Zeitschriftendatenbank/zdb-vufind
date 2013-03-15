@@ -637,12 +637,21 @@ class Solr implements IndexEngine
             // Apply the $searchSpecs property to the data:
             $baseQuery = $this->_applySearchSpecs($ss['QueryFields'], $values);
         }
+        // ZDB TODO
+        if( isset($ss['JoinQuery'][0])) {
+        	return '_query_:"'.$ss['JoinQuery'][0].'('.$baseQuery.')"';
+        }
 
         // Apply filter query if applicable:
         if (isset($ss['FilterQuery'])) {
             return "({$baseQuery}) AND ({$ss['FilterQuery']})";
         }
-
+        if($this->debug){
+        	echo "<b>ZDB: Solr.php (IE) _buildQueryComponent \$basic</b>:$basic<br>";
+        	echo "<b>ZDB: Solr.php (IE) _buildQueryComponent \$field</b>:$field<br>";
+        	echo "<b>ZDB: Solr.php (IE) _buildQueryComponent return \$baseQuery</b>:\"($baseQuery)\"<br>";
+        	echo "<br>";
+        }
         return "($baseQuery)";
     }
 
@@ -759,7 +768,13 @@ class Solr implements IndexEngine
         $excludes = array();
         if (is_array($search)) {
             $query = '';
-//echo "<b>ZDB: Solr.php BuildQuery</b>:<br>";print_r($search);
+
+if($this->debug){
+	echo "<b>ZDB: Solr.php BuildQuery \$search</b>:<br><pre>";
+	print_r($search);
+	echo "</pre>";
+}
+
             foreach ($search as $params) {
 
                 // Advanced Search
@@ -825,6 +840,9 @@ class Solr implements IndexEngine
         if (!isset($query) || $query  == '') {
             $query = '*:*';
         }
+if($this->debug){
+  echo "<b>ZDB: Solr.php BuildQuery return \$query</b>:$query<br><br>";
+}
         return $query;
     }
 
@@ -873,7 +891,7 @@ class Solr implements IndexEngine
      * Execute a search.
      * ZDB edit: Added $localParam as param
      *
-     * @param string $localParam   Local params for the search query
+     * @param array  $localParam      Local params for the search query
      * @param string $query           The search query
      * @param string $handler         The Query Handler to use (null for default)
      * @param array  $filter          The fields and values to filter results on
@@ -892,7 +910,7 @@ class Solr implements IndexEngine
      * @return array                  An array of query results
      * @access public
      */
-    public function search($localParam, $query, $handler = null, $filter = null, $start = 0,
+    public function search(/*$localParam,*/ $query, $handler = null, $filter = null, $start = 0,
         $limit = 20, $facet = null, $spell = '', $dictionary = null,
         $sort = null, $fields = null,
         $method = HTTP_REQUEST_METHOD_POST, $returnSolrError = false
@@ -901,7 +919,15 @@ class Solr implements IndexEngine
         $options = array(
             'q' => $query, 'rows' => $limit, 'start' => $start, 'indent' => 'yes'
         );
-
+        // ZDB: New option LocalParam
+       /* if (isset($localParam)) {
+        	$options['lp'] = $localParam['param'];
+        	$options['lp_types'] = $localParam['types'];
+        	$options['from'] = $localParam['from'];
+        	$options['to'] = $localParam['to'];
+        } else {
+        	$options['lp'] = null;
+        }*/
         // Add Sorting
         if ($sort && !empty($sort)) {
             // There may be multiple sort options (ranked, with tie-breakers);
@@ -986,12 +1012,6 @@ class Solr implements IndexEngine
                         = $this->_buildAdvancedInnerQuery($handler, $query);
                 }
             }
-        }
-        // ZDB: New option LocalParam
-        if (isset($localParam)) {
-        	$options['lp'] = $localParam;
-        } else {
-        	$options['lp'] = '';
         }
         // Limit Fields
         if ($fields) {
@@ -1328,8 +1348,15 @@ class Solr implements IndexEngine
         // Build query string for use with GET or POST:
         $query = array();
         if ($params) {
+        	//$functionArray = array('','lp','qt','from','to','lp_types');
             foreach ($params as $function => $value) {
-                if ($function != '' &&  $function != 'lp') {
+            	
+                //if (!in_array($function,$functionArray)) {
+                if ($function != '') {
+        if($this->debug){
+        	echo "<b>ZDB: Solr.php (IE) _select \$function</b>:$function";
+        	echo "<br>";
+        }
                     // Strip custom FacetFields when sharding makes it necessary:
                     if ($function === 'facet.field') {
                         $value = $this->_stripUnwantedFacets($value);
@@ -1345,11 +1372,23 @@ class Solr implements IndexEngine
                             $query[] = "$function=$additional";
                         }
                     } else {
-                        $value = urlencode($value);
+                       // $value = urlencode($value);
+
                         // now adding localPrams to function 'q'
-                        if ($function === 'q' && isset($params['lp'])) {
-                        	$value = $params['lp'].$value;
-                        }
+                       /* if ($function === 'q' && isset($params['lp'])) {
+                        	// check if it is a dismax query
+                        	if(isset($params['qt']) && isset($params['qf']))
+                            {
+                            	
+                        		$function = "q={!join from=".$params['from'];
+                        		$function .= " to=".$params['to']." v=\$qq}";
+                        		$function .= "&qq={!".$params['qt']." qf='".$params['qf']."'}";
+                        		$query[] = "$function$value";
+                        		continue;
+                        	} else {
+                        	    $value = $params['lp'].$value;
+                        	}
+                        }*/
                         $query[] = "$function=$value";
                     }
                 }

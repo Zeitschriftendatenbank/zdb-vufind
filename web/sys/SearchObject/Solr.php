@@ -187,9 +187,9 @@ class SearchObject_Solr extends SearchObject_Base
         $configArray['Spelling']['skip_numeric'] : true;
         
         // ZDB: Load join function preferences
-        if (isset($searchSettings['JoinQuery']['param'])) {
-        	$this->localParam = $searchSettings['JoinQuery']['param'];
-        }
+        /*if (isset($searchSettings['JoinQuery']['param'])) {
+        	$this->localParam = $searchSettings['JoinQuery'];
+        }*/
     }
 
     /**
@@ -1060,6 +1060,7 @@ class SearchObject_Solr extends SearchObject_Base
         }
 
         // Build Query
+echo "<br><b>ZDB: Solr.php (SO) CALLING Solr.php (IE) BUILDQUERY</b><br>";
         $query = $this->indexEngine->buildQuery($search);
         if (PEAR::isError($query)) {
             return $query;
@@ -1137,11 +1138,40 @@ class SearchObject_Solr extends SearchObject_Base
             $this->fields = '*,score';
         }
 
+        //ZDB TODO
+       /* $localTypes = explode(',',$this->localParam['types']);
+        $lp = false;
+        if(isset($search[0]['index']))
+        {
+        	if(in_array(
+        		strtolower($search[0]['index']),
+        		array_map('strtolower',$localTypes)
+        	))
+        	{
+        		$lp = true;
+        	} else {
+        		echo "false";
+        	}
+        }
+        if(isset($search[0]['group']))
+        {
+        	foreach($search[0]['group'] as $group){
+        		if(in_array(
+        		strtolower($group['field']),
+        		array_map('strtolower',$localTypes)
+        		))
+        		{
+        			$lp = true;
+        		}
+        	}
+        }
+        $this->localParam = ($lp) ? $this->localParam : null;
+        */
         // The first record to retrieve:
         //  (page - 1) * limit = start
         $recordStart = ($this->page - 1) * $this->limit;
         $this->indexResult = $this->indexEngine->search(       
-            $this->localParam, // ZDB: Used for Solr Join
+            //$this->localParam, // ZDB: Used for Solr Join
             $this->query,      // Query string
             $this->index,      // DisMax Handler
             $filterQuery,      // Filter query

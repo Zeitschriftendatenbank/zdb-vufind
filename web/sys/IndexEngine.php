@@ -103,7 +103,7 @@ Interface IndexEngine
      * @return array          An array of query results
      * @access public
      */
-    function search($localParam, $query, $handler = null, $filter = null, $start = 0,
+    function search(/*$localParam,*/ $query, $handler = null, $filter = null, $start = 0,
         $limit = null, $facet = null, $spell = null, $sort = null, 
         $fields = null, $method = HTTP_REQUEST_METHOD_POST
     );
