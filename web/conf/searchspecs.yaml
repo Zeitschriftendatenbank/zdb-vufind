@@ -403,6 +403,8 @@ CallNumber:
   # We use two similar munges here -- one for exact matches, which will get
   # a very high boost factor, and one for left-anchored wildcard searches,
   # which will return a larger number of hits at a lower boost.
+  JoinQuery:
+    - "{!join+from=tid+to=id}"
   CustomMunge:
     callnumber_exact:
       - [uppercase]
@@ -437,6 +439,94 @@ CallNumber:
     #dewey-full:
     #  - [callnumber_exact, 1000]
     # - [callnumber_fuzzy, ~]
+isil:
+  JoinQuery:
+    - "{!join+from=tid+to=id}"
+  CustomMunge:
+    isil_exact:
+      - [uppercase]
+      # Strip whitespace and quotes:
+      #- [preg_replace, '/[ "]/', ""]
+      # ZDB: strip only quotes
+      - [preg_replace, '/["]/', ""]
+      # Escape colons (unescape first to avoid double-escapes):
+      - [preg_replace, "/(\\\:)/", ':']
+      - [preg_replace, '/:/', '\:']
+      # Strip pre-existing trailing asterisks:
+      - [preg_replace, "/\*+$/", ""]
+    isil_fuzzy:
+      - [uppercase]
+      # Strip whitespace and quotes:
+     # - [preg_replace, '/[ "]/', ""]
+      # ZDB: strip only quotes
+      - [preg_replace, '/["]/', ""]
+      # Escape colons (unescape first to avoid double-escapes):
+      - [preg_replace, "/(\\\:)/", ':']
+      - [preg_replace, '/:/', '\:']
+      # Strip pre-existing trailing asterisks:
+      - [preg_replace, "/\*+$/", ""]
+      # Ensure we have just one trailing asterisk.  The trailing space inside
+      #     the quotes has no effect on searching; it is a workaround for a
+      #     Horde::YAML parsing glitch -- see VUFIND-160 in JIRA for details.
+      - [append, "* "]
+  QueryFields:
+    isil:
+      - [isil_exact, 1000]
+      - [isil_fuzzy, ~]
+bestand:
+  JoinQuery:
+    - "{!join+from=tid+to=id}"
+bestand_luecken:
+  JoinQuery:
+    - "{!join+from=tid+to=id}"
+daterange:
+  JoinQuery:
+    - "{!join+from=tid+to=id}"
+sonderstandort:
+  JoinQuery:
+    - "{!join+from=tid+to=id}"
+sonderstandort_signatur:
+  JoinQuery:
+    - "{!join+from=tid+to=id}"
+bestand_kommentar:
+  JoinQuery:
+    - "{!join+from=tid+to=id}"
+institution:
+  JoinQuery:
+    - "{!join+from=tid+to=id}"
+    institution_exact:
+      - [uppercase]
+      # Strip whitespace and quotes:
+      #- [preg_replace, '/[ "]/', ""]
+      # ZDB: strip only quotes
+      - [preg_replace, '/["]/', ""]
+      # Escape colons (unescape first to avoid double-escapes):
+      - [preg_replace, "/(\\\:)/", ':']
+      - [preg_replace, '/:/', '\:']
+      # Strip pre-existing trailing asterisks:
+      - [preg_replace, "/\*+$/", ""]
+    institution_fuzzy:
+      - [uppercase]
+      # Strip whitespace and quotes:
+     # - [preg_replace, '/[ "]/', ""]
+      # ZDB: strip only quotes
+      - [preg_replace, '/["]/', ""]
+      # Escape colons (unescape first to avoid double-escapes):
+      - [preg_replace, "/(\\\:)/", ':']
+      - [preg_replace, '/:/', '\:']
+      # Strip pre-existing trailing asterisks:
+      - [preg_replace, "/\*+$/", ""]
+      # Ensure we have just one trailing asterisk.  The trailing space inside
+      #     the quotes has no effect on searching; it is a workaround for a
+      #     Horde::YAML parsing glitch -- see VUFIND-160 in JIRA for details.
+      - [append, "* "]
+  QueryFields:
+    isil:
+      - [institution_exact, 1000]
+      - [institution_fuzzy, ~]
+collection:
+  JoinQuery:
+    - "{!join+from=tid+to=id}"
 
 publisher:
   DismaxFields:
