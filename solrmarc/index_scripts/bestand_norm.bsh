@@ -3,9 +3,14 @@ import org.marc4j.marc.ControlField;
 import org.marc4j.marc.DataField;
 import org.solrmarc.tools.Utils;
 import org.apache.log4j.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 org.solrmarc.index.SolrIndexer indexer = null;
 protected static Logger logger = Logger.getLogger(Utils.class.getName());
+private final static Pattern YYYY_MM_DD = Pattern.compile("\\d{4,4}-\\d{2,2}-\\d{2}");
+private static Matcher matcher;
+private static Matcher matcher_date;
 /**
 * returns a set of holdings as Strings like "1994,1998"
 *
@@ -36,11 +41,17 @@ protected static Logger logger = Logger.getLogger(Utils.class.getName());
             {
             	// example
             	// 859 01$81.1\x$a1$i1927
-            	String[] subfieldData = Utils.getSubfieldData(df, sfi.charAt(0)).split("/");
-            	logger.info("SF i / SplitResult0: " + subfieldData[0]);
-            	String sfDataSubstr = subfieldData[0].substring(subfieldData[0].length()-4).trim();
-            	logger.info("SF i / SubstringResult: " + sfDataSubstr);
-            	result.add(sfDataSubstr.concat("-01-01T00:00:00Z") + ",9999-12-31T23:59:59Z");
+            	String sfd = Utils.getSubfieldData(df, sfi.charAt(0));
+            	if(sfd != null){
+	            	String[] subfieldData = sfd.split("/");
+	            	logger.info("SF i / SplitResult0: " + subfieldData[0]);
+	            	String sfDataSubstr = subfieldData[0].substring(subfieldData[0].length()-4).trim();
+	            	logger.info("SF i / SubstringResult: " + sfDataSubstr);
+	            	matcher_date = YYYY_MM_DD.matcher(sfDataSubstr);
+	            	if(matcher_date.find()){
+	            		result.add(sfDataSubstr.concat("-01-01T00:00:00Z") + ",9999-12-31T23:59:59Z");
+	            	}
+            	}
             }
             else // assuming indicator 2 is 0
             {
@@ -51,11 +62,17 @@ protected static Logger logger = Logger.getLogger(Utils.class.getName());
           		// save to array
         		int arrInd1 = Integer.parseInt(splitResult[0]);
         		int arrInd2 = Integer.parseInt(splitResult[1].substring(0,1));
-        		String[] subfieldData = Utils.getSubfieldData(df, sfi.charAt(0)).split("/");
-        		logger.info("SF i / SplitResult0: " + subfieldData[0]);
-        		String sfDataSubstr = subfieldData[0].substring(subfieldData[0].length()-4).trim();
-        		logger.info("SF i / SubstringResult: " + sfDataSubstr);
-        		array859[arrInd1][arrInd2] = sfDataSubstr;
+        		String sfd = Utils.getSubfieldData(df, sfi.charAt(0));
+        		if(sfd != null){
+        			String[] subfieldData = sfd.split("/");
+        			logger.info("SF i / SplitResult0: " + subfieldData[0]);
+        			String sfDataSubstr = subfieldData[0].substring(subfieldData[0].length()-4).trim();
+        			logger.info("SF i / SubstringResult: " + sfDataSubstr);
+        			matcher_date = YYYY_MM_DD.matcher(sfDataSubstr);
+	            	if(matcher_date.find()){
+	            		array859[arrInd1][arrInd2] = sfDataSubstr;
+	            	}
+        		}
            		//array859[splitResult[0]][splitResult[1].substring(0,0)] = Utils.getSubfieldData(df, sfi.charAt(0)).substring(0,3);
             }
         }
@@ -77,8 +94,8 @@ protected static Logger logger = Logger.getLogger(Utils.class.getName());
     			logger.info("String dateBegin " + i + " 1: " + dateBegin);
     			if(dateBegin.equals("void")) logger.info("is void");
     		} else {
-    			logger.error("bestand_norm.bsh : Array Index 1 is null.");
-    			return null;
+    			logger.error("bestand_norm.bsh : Array Index " + i + " 1 is null.");
+    			continue;
     		}
     		if(array859[i][2] != null) {
     			logger.info("Array " + i + " 2: " + array859[i][2]);
