@@ -136,6 +136,7 @@
 		<field name="dewey-sort" type="string" indexed="true" stored="true" />
 		<field name="dewey-raw" type="string" indexed="true" stored="true" />
 		<field name="standardNumbers" type="string" indexed="true" stored="true" multiValued="true"/>
+		<field name="groupid" type="string" indexed="true" stored="true"/>
 		<!-- other -->
 		<field name="fullrecord" type="string" indexed="false" stored="true"/>
 		<field name="marc_error" type="string" indexed="false" stored="true" multiValued="true"/>
