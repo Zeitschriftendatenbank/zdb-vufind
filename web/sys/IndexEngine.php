@@ -87,7 +87,6 @@ Interface IndexEngine
      * Execute a search.
      * ZDB edit: Added $localParam as param
      *
-     * @param string $localParam   Local params for the search query
      * @param string $query   The search query
      * @param string $handler The Query Handler to use (null for default)
      * @param array  $filter  The fields and values to filter results on
@@ -103,7 +102,7 @@ Interface IndexEngine
      * @return array          An array of query results
      * @access public
      */
-    function search(/*$localParam,*/ $query, $handler = null, $filter = null, $start = 0,
+    function search($query, $handler = null, $filter = null, $start = 0,
         $limit = null, $facet = null, $spell = null, $sort = null, 
         $fields = null, $method = HTTP_REQUEST_METHOD_POST
     );

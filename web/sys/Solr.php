@@ -637,7 +637,8 @@ class Solr implements IndexEngine
             // Apply the $searchSpecs property to the data:
             $baseQuery = $this->_applySearchSpecs($ss['QueryFields'], $values);
         }
-        // ZDB TODO
+        // ZDB: Thsi is where the JOIN is injected
+        // see searchpecs.yaml which fields have join queries
         if( isset($ss['JoinQuery'][0])) {
         	return '_query_:"'.$ss['JoinQuery'][0].'('.$baseQuery.')"';
         }
@@ -1372,23 +1373,8 @@ if($this->debug){
                             $query[] = "$function=$additional";
                         }
                     } else {
+                    	//ZDB: disabled urlencode
                        // $value = urlencode($value);
-
-                        // now adding localPrams to function 'q'
-                       /* if ($function === 'q' && isset($params['lp'])) {
-                        	// check if it is a dismax query
-                        	if(isset($params['qt']) && isset($params['qf']))
-                            {
-                            	
-                        		$function = "q={!join from=".$params['from'];
-                        		$function .= " to=".$params['to']." v=\$qq}";
-                        		$function .= "&qq={!".$params['qt']." qf='".$params['qf']."'}";
-                        		$query[] = "$function$value";
-                        		continue;
-                        	} else {
-                        	    $value = $params['lp'].$value;
-                        	}
-                        }*/
                         $query[] = "$function=$value";
                     }
                 }
