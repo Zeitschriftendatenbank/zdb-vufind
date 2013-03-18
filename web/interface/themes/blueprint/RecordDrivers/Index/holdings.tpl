@@ -33,19 +33,25 @@
 <h3>{$location|translate|escape}</h3>
 <table cellpadding="2" cellspacing="0" border="0" class="citation" summary="{translate text='Holdings details from'} {translate text=$location}">
   {foreach from=$holding item=row}
-	  {if $holding.0.callnumber}
+	  {if $row.callnumber}
 	  <tr>
 	    <th>{translate text="Call Number"}: </th>
 	    <td>{$row.callnumber|escape}</td>
 	  </tr>
 	  {/if}
-	  {if $holding.0.text}
+	  {if $row.storage}
+	  <tr>
+	    <th>{translate text="Storage"}: </th>
+	    <td>{$row.storage|escape}</td>
+	  </tr>
+	  {/if}
+	  {if $row.text}
       <tr>
         <th>{translate text="Text"}: </th>
         <td>{$row.text|escape}</td>
      </tr>
      {/if}
-	  {if $holding.0.summary}
+	  {if $row.summary}
 	  <tr>
 	    <th>{translate text="Volume Holdings"}: </th>
 	    <td>{foreach from=$row.summary item=summary}
@@ -54,7 +60,7 @@
 	    </td>
 	  </tr>
 	  {/if}
-	  {if $holding.0.gaps}
+	  {if $row.gaps}
 	  <tr>
 	    <th>{translate text="Gaps"}: </th>
 	    <td>{foreach from=$row.gaps item=gaps}
@@ -62,12 +68,12 @@
 	      {/foreach}</td>
 	  </tr>
 	  {/if}
-	  {if $holding.0.notes}
+	  {if $row.comment}
 	  <tr>
-	    <th>{translate text="Notes"}: </th>
+	    <th>{translate text="Comment"}: </th>
 	    <td>
-	      {foreach from=$row.notes item=data}
-	      {$data|escape}<br>
+	      {foreach from=$row.comment item=comment}
+	      {$comment|escape}<br>
 	      {/foreach}
 	    </td>
 	  </tr>
