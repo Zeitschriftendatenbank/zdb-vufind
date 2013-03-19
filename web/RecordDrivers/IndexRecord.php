@@ -1737,8 +1737,21 @@ class IndexRecord implements RecordInterface
      */
     protected function getNewerTitles()
     {
-        return isset($this->fields['title_new']) ?
-            $this->fields['title_new'] : array();
+        // ZDB: title_new fields are joined fields with separator |
+    	// e.g. 012948020|Naturschutz und Landschaftspflege 
+    	$_titles_new = array();
+        if (isset($this->fields['title_new']))
+        {
+        	foreach($this->fields['title_new'] as $val)
+        	{
+        		$title_new = array();
+        		$_expl_val = explode('|',$val);
+        		$_title_new['id'] = $_expl_val[0];
+        		$_title_new['title'] = $_expl_val[1];
+        		$_titles_new[] = $_title_new;
+        	}
+        }
+        return $_titles_new;
     }
 
     /**
@@ -1785,8 +1798,21 @@ class IndexRecord implements RecordInterface
      */
     protected function getPreviousTitles()
     {
-        return isset($this->fields['title_old']) ?
-            $this->fields['title_old'] : array();
+        // ZDB: title_old fields are joined fields with separator |
+    	// e.g. 012948020|Naturschutz und Landschaftspflege 
+    	$_titles_old = array();
+        if (isset($this->fields['title_old']))
+        {
+        	foreach($this->fields['title_old'] as $val)
+        	{
+        		$title_old = array();
+        		$_expl_val = explode('|',$val);
+        		$_title_old['id'] = $_expl_val[0];
+        		$_title_old['title'] = $_expl_val[1];
+        		$_titles_old[] = $_title_old;
+        	}
+        }
+        return $_titles_old;
     }
 
     /**

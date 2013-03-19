@@ -26,7 +26,7 @@
       <th>{translate text='New Title'}: </th>
       <td>
         {foreach from=$coreNextTitles item=field name=loop}
-          <a href="{$url}/Search/Results?lookfor=%22{$field|escape:"url"}%22&amp;type=Title">{$field|escape}</a><br/>
+          <a href="{$url}/Record/{$field.id}">{$field.title|escape}</a><br/>
         {/foreach}
       </td>
     </tr>
@@ -37,7 +37,7 @@
       <th>{translate text='Previous Title'}: </th>
       <td>
         {foreach from=$corePrevTitles item=field name=loop}
-          <a href="{$url}/Search/Results?lookfor=%22{$field.id|escape:"url"}%22&amp;type=Title">{$field|escape}</a><br/>
+         <a href="{$url}/Record/{$field.id}">{$field.title|escape}</a><br/>
         {/foreach}
       </td>
     </tr>
