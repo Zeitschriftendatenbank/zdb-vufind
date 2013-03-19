@@ -1,0 +1,54 @@
+import org.marc4j.marc.Record;
+import org.apache.log4j.Logger;
+import org.marc4j.marc.DataField;
+import org.marc4j.marc.VariableField;
+import org.solrmarc.tools.Utils;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+// define the base level indexer so that its methods can be called from the script.
+// note that the SolrIndexer code will set this value before the script methods are called.
+org.solrmarc.index.SolrIndexer indexer = null;
+private final static Pattern PPN = Pattern.compile("\\(DE-101\\)(.*)");
+private static Matcher matcher;
+private static Matcher ppn;
+protected static Logger logger = Logger.getLogger(Utils.class.getName());
+/**
+ * Check Subfilelds for the matching of a specific Value and return another subfield (or the same)
+ * @param record
+ * @param field String dreistelliges MARC Tag
+ * @param subField1 String Unterfeld fuer PPN
+ * @param subField2 String Unterfeld fuer Titel
+ */
+public Set getRelation(Record record,String field, String subField1, String subField2) {
+	
+	List fields = record.getVariableFields(field);
+	if(fields.size() > 0)
+	{
+		Set result = new LinkedHashSet();
+		
+		for (VariableField vField : fields)
+		{
+			DataField dField = (DataField) vField;
+			List sfdataList = Utils.getSubfieldStrings(dField, subField1.charAt(0));
+			if(sfdataList.size() > 0){
+				for(String sfd : sfdataList){
+					ppn = PPN.matcher(sfd);
+					if(ppn.find()){
+						String sfdata2 = Utils.getSubfieldData(dField, subField2.charAt(0));
+						result.add(ppn.group(1) +"|"+sfdata2);
+					} else {
+						continue;
+					}					
+				}
+			} else {
+				continue;
+			}
+			
+	    }
+	    return result;
+	} else {
+		return null;
+	}
+
+
+}
