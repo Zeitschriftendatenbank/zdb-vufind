@@ -52,12 +52,12 @@ public Set getType_de(Record record){
                         	result.add("Online-Ressource");
                             break;
                         default:
-                            result.add("Datenträger");
+                            result.add("DatentrÃ¤ger");
                             break;
                     }
                     break;
                 case 'F':
-                    result.add("Blindenschriftträger");
+                    result.add("BlindenschrifttrÃ¤ger");
                     break;
                 case 'H':
                     result.add("Microform");
@@ -69,7 +69,7 @@ public Set getType_de(Record record){
                     result.add("Noten");
                     break;
                 case 'S':
-                	result.add("Tonträger");
+                	result.add("TontrÃ¤ger");
                     break;
                 case 'V':
                 	result.add("Videoaufnahme");

@@ -1,4 +1,4 @@
-web/conf/*
+web/conf/config.ini
 solrmarc/vufind_exemplar_config.properties
 solrmarc/vufind_titel_config.properties
 solr/*

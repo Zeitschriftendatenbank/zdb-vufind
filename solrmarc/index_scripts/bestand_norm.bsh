@@ -5,10 +5,9 @@ import org.solrmarc.tools.Utils;
 import org.apache.log4j.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 org.solrmarc.index.SolrIndexer indexer = null;
 protected static Logger logger = Logger.getLogger(Utils.class.getName());
-private final static Pattern YYYY_MM_DD = Pattern.compile("\\d{4,4}-\\d{2,2}-\\d{2}");
+private final static Pattern YYYY = Pattern.compile("[12][0-9][0-9][0-9]");
 private static Matcher matcher;
 private static Matcher matcher_date;
 /**
@@ -19,7 +18,7 @@ private static Matcher matcher_date;
 */
     public Set getBestandNorm(Record record)
     {
-    	logger.info(record);
+    	//logger.info(record);
         Set result = new LinkedHashSet();
 
         List list859 = record.getVariableFields("859");
@@ -29,14 +28,14 @@ private static Matcher matcher_date;
 		String sfi = "i";
 		String sf8 = "8";
         int arraySize = listSize + 1; // we cannot set index 0 --> listsize + 1
-        logger.info("ArraySize: " + arraySize);
+        //logger.info("ArraySize: " + arraySize);
         String[][] array859 = new String[arraySize][3];
         for (DataField vf : list859) // for every 859 field
         {
             DataField df = (DataField) vf;
             // get indicator 2
             char ind2 = df.getIndicator2();
-        	logger.info("Indicator 2: " + ind2);
+        	//logger.info("Indicator 2: " + ind2);
             if(ind2 != '0') // no ending
             {
             	// example
@@ -44,12 +43,15 @@ private static Matcher matcher_date;
             	String sfd = Utils.getSubfieldData(df, sfi.charAt(0));
             	if(sfd != null){
 	            	String[] subfieldData = sfd.split("/");
-	            	logger.info("SF i / SplitResult0: " + subfieldData[0]);
-	            	String sfDataSubstr = subfieldData[0].substring(subfieldData[0].length()-4).trim();
-	            	logger.info("SF i / SubstringResult: " + sfDataSubstr);
-	            	matcher_date = YYYY_MM_DD.matcher(sfDataSubstr);
-	            	if(matcher_date.find()){
-	            		result.add(sfDataSubstr.concat("-01-01T00:00:00Z") + ",9999-12-31T23:59:59Z");
+	            	if(subfieldData[0].length() > 3){
+		            	//logger.info("SF i / SplitResult0: " + subfieldData[0]);
+	            		subfieldData[0] = subfieldData[0].replaceAll("\\W|_","");
+		            	String sfDataSubstr = subfieldData[0].substring(subfieldData[0].length()-4).trim();
+		            	//logger.info("SF i / SubstringResult: " + sfDataSubstr);
+		            	matcher_date = YYYY.matcher(sfDataSubstr);
+		            	if(matcher_date.find()){
+		            		result.add(sfDataSubstr.concat("-01-01T00:00:00Z") + ",9999-12-31T23:59:59Z");
+		            	}
 	            	}
             	}
             }
@@ -57,21 +59,24 @@ private static Matcher matcher_date;
             {
         		 // get subfield 8
             	String[] splitResult = Utils.getSubfieldData(df, sf8.charAt(0)).split("\\.");
-            	logger.info("SF 8 SplitResult0: " + splitResult[0]);
-            	logger.info("SF 8 SplitResult1: " + splitResult[1].substring(0,1));
+            	//logger.info("SF 8 SplitResult0: " + splitResult[0]);
+            	//logger.info("SF 8 SplitResult1: " + splitResult[1].substring(0,1));
           		// save to array
         		int arrInd1 = Integer.parseInt(splitResult[0]);
         		int arrInd2 = Integer.parseInt(splitResult[1].substring(0,1));
         		String sfd = Utils.getSubfieldData(df, sfi.charAt(0));
         		if(sfd != null){
         			String[] subfieldData = sfd.split("/");
-        			logger.info("SF i / SplitResult0: " + subfieldData[0]);
-        			String sfDataSubstr = subfieldData[0].substring(subfieldData[0].length()-4).trim();
-        			logger.info("SF i / SubstringResult: " + sfDataSubstr);
-        			matcher_date = YYYY_MM_DD.matcher(sfDataSubstr);
-	            	if(matcher_date.find()){
-	            		array859[arrInd1][arrInd2] = sfDataSubstr;
-	            	}
+        			//logger.info("SF i / SplitResult0: " + subfieldData[0]);
+        			if(subfieldData[0].length() > 3){
+        				subfieldData[0] = subfieldData[0].replaceAll("\\W|_","");
+	        			String sfDataSubstr = subfieldData[0].substring(subfieldData[0].length()-4).trim();
+	        			//logger.info("SF i / SubstringResult: " + sfDataSubstr);
+		            	matcher_date = YYYY.matcher(sfDataSubstr);
+		            	if(matcher_date.find()){
+		            		array859[arrInd1][arrInd2] = sfDataSubstr;
+		            	}
+        			}
         		}
            		//array859[splitResult[0]][splitResult[1].substring(0,0)] = Utils.getSubfieldData(df, sfi.charAt(0)).substring(0,3);
             }
@@ -87,28 +92,28 @@ private static Matcher matcher_date;
     	{
     		if(array859[i][1] != null) // this should not happen!!!
     		{
-        		logger.info("Array " + i + " 1: " + array859[i][1]);
+        		//logger.info("Array " + i + " 1: " + array859[i][1]);
     			yearBegin = array859[i][1];
-    			logger.info("String yearBegin " + i + " 1: " + yearBegin);
+    			//logger.info("String yearBegin " + i + " 1: " + yearBegin);
     			dateBegin = yearBegin + appendBegin;
-    			logger.info("String dateBegin " + i + " 1: " + dateBegin);
+    			//logger.info("String dateBegin " + i + " 1: " + dateBegin);
     			if(dateBegin.equals("void")) logger.info("is void");
     		} else {
-    			logger.error("bestand_norm.bsh : Array Index " + i + " 1 is null.");
+    			//logger.error("bestand_norm.bsh : Array Index " + i + " 1 is null.");
     			continue;
     		}
     		if(array859[i][2] != null) {
-    			logger.info("Array " + i + " 2: " + array859[i][2]);
+    			//logger.info("Array " + i + " 2: " + array859[i][2]);
     			yearEnd = array859[i][2];
-    			logger.info("String yearEnd " + i + " 1: " + yearEnd);
+    			//logger.info("String yearEnd " + i + " 1: " + yearEnd);
     			dateEnd = yearEnd + appendEnd;
     		} else { // no end year --> only one year total
     			yearEnd = array859[i][1];
     			dateEnd = yearEnd + appendEnd;
     		}
 
-    		logger.info("DateBegin " + i + ": " + dateBegin);
-    		logger.info("DateEnd " + i + ": " + dateEnd);
+    		//logger.info("DateBegin " + i + ": " + dateBegin);
+    		//logger.info("DateEnd " + i + ": " + dateEnd);
     		result.add(dateBegin + "," + dateEnd);
     	}
 
